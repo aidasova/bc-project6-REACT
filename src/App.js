@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import MainPage from './pages/MainPage/MainPage';
+import ListOffice from './pages/ListOffice/ListOffice';
+import ApplicationForm from './pages/ApplicationForm/ApplicationForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './index.css';
+
+class App extends React.Component {
+  render() {
+    return (
+      <div className="app">
+         <Route path="/" exact component={MainPage} />
+         <Route path="/offices" exact component={ListOffice} />
+         <Route path="/form" exact component={ApplicationForm} />
+      </div>
+    );
+  }
 }
 
 export default App;
+
