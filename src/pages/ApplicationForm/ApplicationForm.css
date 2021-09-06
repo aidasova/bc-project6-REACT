@@ -1,0 +1,41 @@
+.form_page {
+    background-color: #252323;  
+    border-radius: 5%;
+    color: #dbdada;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+.form_input {
+    margin: 20px;
+    padding:10px;
+    width: 260px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: rgb(233, 231, 231);
+  }
+  .form_submit {
+    width: 280px;
+    margin: 20px;
+    padding: 1em;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    background-color: rgb(180, 179, 179);
+  }
+  .form_name {
+    margin-left: 20px;
+    color: white;
+    font-weight: 500;
+  }
+  .form_submit_save {
+    text-align: center;
+    background-color: rgb(150, 160, 221);
+    width: 280px;
+    margin: 10px auto;
+    padding: 1em;
+    border: none;
+   
+  }

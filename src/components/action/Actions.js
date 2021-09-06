@@ -1,0 +1,1 @@
+export const addFreeOffice = 'ADD_FREE_OFFICE';
