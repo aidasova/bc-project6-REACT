@@ -16,9 +16,9 @@ class MainPage extends Component {
                 </div>
                 <img src='/лого.svg' alt='' className="logo" />
                 <div className="name_name"> бизнес центр</div>
-               <Link to="/offices" className="btn_add" >свободные помещения</Link>
-               <Link to="/form" className="btn_add">заявка на помещение</Link>
-               <Link to="/login" className="btn_add">личный кабинет</Link>
+                <Link to="/offices" className="btn_add" >свободные помещения</Link>
+                <Link to="/form" className="btn_add">заявка на помещение</Link>
+                <Link to="/login" className="btn_add">личный кабинет</Link>
             </div>
         );
     }

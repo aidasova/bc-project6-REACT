@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import store from '../../reducer/store';
 import './ApplicationForm.css';
-
+import {addFreeOffice, addFreeOfficeToForm} from '../../components/action/Actions';
 
 class ApplicationForm extends Component {
 
@@ -8,19 +10,69 @@ class ApplicationForm extends Component {
         super();
         this.state = {
           id: "",
-          user: "",
+          userName: "",
           company: "",
           inn: "",
           choise: "",
-          comment: "",
+          userComment: "",
           tel: "",
+          saveForm: false,
         };
       }
+      componentDidMount() {
+        const globalState = store.getState(); 
+        const maxId = globalState.officeitems.reduce((max, item) => item.id > max ? item.id : max, 0);
+        const officePart = globalState.officeitems.find((item) => {
+          if (item.id === maxId) {
+            return item;
+          }
+        });
+        console.log(officePart)
+        console.log(maxId)
+        this.setState({
+            id: officePart.id,
+            choise: officePart.choise
+        })
+}
       handlerChange =(event) => {
-
+        let name = event.target.name; //получаем название поля
+        let value = event.target.value; // получаем значение поля
+  
+        this.setState({ [name]: value });
+        console.log({ [name]: value });
       }
     handlerSubmit =(event) => {
-
+        event.preventDefault();
+        console.log(this.state)
+        this.setState({
+            saveForm: true
+          })
+        // let officeItem = this.state
+        // store.dispatch({
+        //     type: addFreeOffice,
+        //     payload: officeItem//отправили в редьюсер
+        // })
+        axios
+            .post(`http://localhost:3010/office/add`,
+            {
+                userName: this.state.userName,
+                company: this.state.company,
+                inn: this.state.inn,
+                choise: this.state.choise,
+                userComment: this.state.userComment,
+                tel: this.state.tel,
+            })
+            .then(response => {
+              store.dispatch({
+                type: addFreeOfficeToForm,
+                payload: [
+                  ...response.data
+                ]
+              })      
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     render() { 
@@ -34,7 +86,6 @@ class ApplicationForm extends Component {
                         className="form_input"
                         name="user"
                         type="text"
-                        // value={this.state.requiredAmount}
                         onChange={this.handlerChange}
                         placeholder="имя"
                         />
@@ -44,7 +95,6 @@ class ApplicationForm extends Component {
                         className="form_input"
                         name="company"
                         type="text"
-                        // value={this.state.targetTerm}
                         onChange={this.handlerChange}
                         placeholder="наименование компании"
                         />
@@ -54,7 +104,6 @@ class ApplicationForm extends Component {
                         className="form_input"
                         name="inn"
                         type="text"
-                        // value={this.state.startingAmount}
                         onChange={this.handlerChange}
                         placeholder="инн"
                         />
@@ -64,7 +113,6 @@ class ApplicationForm extends Component {
                         className="form_input"
                         name="choise"
                         type="text"
-                        // value={this.state.depositInterest}
                         onChange={this.handlerChange}
                         />
                     </label>
@@ -73,7 +121,6 @@ class ApplicationForm extends Component {
                         className="form_input"
                         name="comment"
                         type="text"
-                        // value={this.state.taskResult}
                         placeholder="комментарий"
                         />
                     </label>
@@ -82,13 +129,12 @@ class ApplicationForm extends Component {
                         className="form_input"
                         name="tel"
                         type="text"
-                        // value={this.state.nameTarget}
                         onChange={this.handlerChange}
                         placeholder="номер телефона"
                         />
                     </label>
-                    {this.state.savePurpose
-                    ?  <button type="submit" className="form_submit_save"></button>
+                    {this.state.saveForm
+                    ?  <button type="submit" className="form_submit_save">заявка отправлена</button>
                     :
                      <button type="submit" className="form_submit">отправить заявку</button>}
                 </form>

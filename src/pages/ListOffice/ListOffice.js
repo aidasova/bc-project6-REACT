@@ -1,59 +1,79 @@
 import React, { Component } from 'react';
+import store from '../../reducer/store';
+import axios from 'axios';
+import { addFreeOffice, refresh } from '../../components/action/Actions';
 import './ListOffice.css';
 
 
 class ListOffice extends Component {
+    constructor() {
+        super()
+          this.state = {
+            officeitems: [],
+            id: '',
+            choise: ''
+        }
+      }
+
+      componentDidMount() {
+        store.subscribe(() => {
+          const globalState = store.getState(); //получить данные из глобального состояния
+          this.setState({   //обновить локальное состояние
+              officeitems: globalState.officeitems
+          })
+      })
+      axios
+        .get(`http://localhost:3010/office/all`)
+        .then(res => {
+
+        store.dispatch({
+          type: refresh,
+          payload: [
+            ...res.data
+          ]
+        })
+        console.log(res)
+        
+        let globalState = store.getState();
+        this.setState ({
+          officeitems: [
+            ...globalState.officeitems
+          ]
+        
+        })
+      })
+      .catch(err => {
+          console.log(err);
+      });
+    }
+
+    buttonClick = (e) => {
+        // e.preventDefault();
+         const dataOffice =  this.state
+         store.dispatch({
+             type: addFreeOffice,
+             payload:  dataOffice,
+         })
+         }
     render() { 
         
         return (
             <div className="office_page">
-                
-                
                 <div className="office_text">список помещений</div>
 
-                <div className="office_part">
-                  <div className="office_item">1 этаж </div>
-                  <div className="office_item">100кв.м.</div>
-                  <div className="office_item">800р/кв.м.</div>
-                  <button className="office_item">заявка</button>
+                <div className="office_text">
+                    {this.state.officeitems.map(item => {
+                    return(
+                        <div className="office_part" key={item.id}>
+                        <div className="office_item">{item.Floor}</div>
+                        <div className="office_item">{item.Square}</div>
+                        <div className="office_item">{item.Cost}</div>
+                        <button onClick={()=>this.buttonClick()} className="office_item">заявка</button>
+                    </div>
+                    )
+                    })}
                 </div>
 
-                <div className="office_part">
-                  <div className="office_item">2 этаж </div>
-                  <div className="office_item">40кв.м.</div>
-                  <div className="office_item">800р/кв.м.</div>
-                  <button className="office_item">заявка</button>
-                </div>
-
-                <div className="office_part">
-                  <div className="office_item">3 этаж </div>
-                  <div className="office_item">40кв.м.</div>
-                  <div className="office_item">800р/кв.м.</div>
-                  <button className="office_item">заявка</button>
-                </div>
-
-                <div className="office_part">
-                  <div className="office_item">1 этаж </div>
-                  <div className="office_item">40кв.м.</div>
-                  <div className="office_item">800р/кв.м.</div>
-                  <button className="office_item">заявка</button>
-                </div>
-
-                <div className="office_part">
-                  <div className="office_item">1 этаж </div>
-                  <div className="office_item">40кв.м.</div>
-                  <div className="office_item">800р/кв.м.</div>
-                  <button className="office_item">заявка</button>
-                </div>
-
-                <div className="office_part">
-                  <div className="office_item">12 этаж </div>
-                  <div className="office_item">40кв.м.</div>
-                  <div className="office_item">800р/кв.м.</div>
-                  <button className="office_item">заявка</button>
-                </div>
-
-              
             </div>
         );
     }
