@@ -12,7 +12,7 @@ class App extends React.Component {
       <div className="app">
          <Route path="/" exact component={MainPage} />
          <Route path="/offices" exact component={ListOffice} />
-         <Route path="/form" exact component={ApplicationForm} />
+         <Route path="/form/:id" exact component={ApplicationForm} />
       </div>
     );
   }

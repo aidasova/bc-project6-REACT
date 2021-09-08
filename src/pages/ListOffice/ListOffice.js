@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import store from '../../reducer/store';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import { addFreeOffice, refresh } from '../../components/action/Actions';
+import { addFreeOfficeToForm, refresh } from '../../components/action/Actions';
 import './ListOffice.css';
 
 
@@ -50,14 +51,16 @@ class ListOffice extends Component {
     buttonClick = (e) => {
         // e.preventDefault();
          const dataOffice =  this.state
+         console.log(dataOffice)
          store.dispatch({
-             type: addFreeOffice,
+             type: addFreeOfficeToForm,
              payload:  dataOffice,
          })
          }
     render() { 
-        
-        return (
+      return this.state.id
+      ? (<Redirect to={"/form/" + this.state.id}></Redirect>)
+      : (
             <div className="office_page">
                 <div className="office_text">список помещений</div>
 

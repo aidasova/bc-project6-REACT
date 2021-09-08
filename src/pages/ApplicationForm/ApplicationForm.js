@@ -64,7 +64,7 @@ class ApplicationForm extends Component {
             })
             .then(response => {
               store.dispatch({
-                type: addFreeOfficeToForm,
+                type: addFreeOffice,
                 payload: [
                   ...response.data
                 ]
