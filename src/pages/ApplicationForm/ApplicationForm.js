@@ -17,7 +17,7 @@ class ApplicationForm extends Component {
           choise: "",
           userComment: "",
           tel: "",
-          saveForm: false,
+          saveForm: 0,
         };
       }
       componentDidMount() {
