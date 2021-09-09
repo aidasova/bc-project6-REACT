@@ -30,12 +30,3 @@
     color: white;
     font-weight: 500;
   }
-  .form_submit_save {
-    text-align: center;
-    background-color: rgb(97, 97, 97);
-    width: 280px;
-    margin: 10px auto;
-    padding: 1em;
-    border: none;
-   
-  }

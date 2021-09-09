@@ -3,6 +3,7 @@ import axios from 'axios';
 import store from '../../reducer/store';
 import './ApplicationForm.css';
 import {addFreeOffice, addFreeOfficeToForm} from '../../components/action/Actions';
+import { Redirect } from 'react-router-dom';
 
 class ApplicationForm extends Component {
 
@@ -133,10 +134,8 @@ class ApplicationForm extends Component {
                         placeholder="номер телефона"
                         />
                     </label>
-                    {this.state.saveForm
-                    ?  <button type="submit" className="form_submit_save">заявка отправлена</button>
-                    :
-                     <button type="submit" className="form_submit">отправить заявку</button>}
+                 
+                     <button type="submit" className="form_submit">отправить заявку</button>
                 </form>
             </div>
         );
