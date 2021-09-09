@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import store from '../../reducer/store';
 import './ApplicationForm.css';
+import { Link } from 'react-router-dom';
 import {addFreeOffice, addFreeOfficeToForm} from '../../components/action/Actions';
-import { Redirect } from 'react-router-dom';
 
 class ApplicationForm extends Component {
 
@@ -45,6 +45,7 @@ class ApplicationForm extends Component {
     handlerSubmit =(event) => {
         event.preventDefault();
         console.log(this.state)
+        alert('заявка отправлена')
         this.setState({
             saveForm: true
           })
@@ -134,7 +135,7 @@ class ApplicationForm extends Component {
                         placeholder="номер телефона"
                         />
                     </label>
-                 
+                    {/* <Link to='/' className="form_submit">отправить заявку</Link> */}
                      <button type="submit" className="form_submit">отправить заявку</button>
                 </form>
             </div>
