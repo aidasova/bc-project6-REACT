@@ -3,7 +3,7 @@ import {refresh, addFreeOffice, addFreeOfficeToForm} from '../components/action/
 let initialState = { 
     officeitems: [],  
     officeitemsNew: [],
-    officeForm: []
+    // officeForm: []
     }
 
 function reducer(state = initialState, action) {
@@ -34,7 +34,7 @@ function reducer(state = initialState, action) {
         // }
         
     }
-    
+   
       return state;
 }
 

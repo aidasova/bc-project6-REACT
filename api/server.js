@@ -39,11 +39,11 @@ app.post('/office/add', (request, response) => {
     const {userName, company, inn, choise, userComment, tel} = request.body;
     console.log(request.body)
     console.log( `INSERT INTO officeForm (user, company, inn, choise, comment, tel)
-    VALUES ('${userName}', ${company}, ${inn}, ${choise}, ${userComment}, ${tel})`)
+    VALUES ('${userName}', '${company}', '${inn}', '${choise}', '${userComment}', '${tel}')`)
    
     connection.query(`
         INSERT INTO officeForm (userName, company, inn, choise, userComment, tel)
-        VALUES ('${userName}', '${company}'', '${inn}', '${choise}', '${userComment}', '${tel}');
+        VALUES ('${userName}', '${company}', '${inn}', '${choise}', '${userComment}', '${tel}');
         `, (err, data) => {
         if(err) {
             response.status(404).json('not found');

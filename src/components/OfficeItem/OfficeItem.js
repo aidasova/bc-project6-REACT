@@ -22,11 +22,15 @@ class OfficeItem extends Component {
                     <div className="office_item">{Floor}</div>
                     <div className="office_item">{Square}</div>
                     <div className="office_item">{Cost}</div>
-                    <button 
-                        type="checkbox" 
-                        onClick={()=>this.buttonClick(ID)} 
-                        className="office_item">
-                    </button>
+                    <label>
+                        <input 
+                            name="office"
+                            type="checkbox" 
+                            onClick={()=>this.buttonClick(ID)} 
+                            className="office_item">
+                        </input>
+                        <div className="checkbox"></div>
+                    </label>
                 </div>
             </div>
         );
