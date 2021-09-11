@@ -38,20 +38,16 @@
     color: black;
     width: 30px; 
 }
-
-
-/* .office_item:last-child:hover:not(:disabled){
-    opacity: 0.8;
-    cursor: pointer;
-    transition: all 0.2s linear;
-    background-color: rgb(175, 175, 175);
-    color: black;
-    width: 30px;
+.checkbox {
+    border: 2px solid grey;
+    width: 20px;
+    height: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
 }
-.office_item:last-child:disabled {
-    background-color: rgb(65, 65, 65);
-    color: black;
-    width: 30px;
-    opacity: 0.5;
-    cursor: not-allowed;
-} */
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"]:checked ~.checkbox {
+    background-color: grey;  
+}
