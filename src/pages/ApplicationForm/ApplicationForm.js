@@ -94,7 +94,7 @@ class ApplicationForm extends Component {
                     <label>
                         <input
                         className="form_input"
-                        name="user"
+                        name="userName"
                         type="text"
                         onChange={this.handlerChange}
                         placeholder="имя"
@@ -130,7 +130,7 @@ class ApplicationForm extends Component {
                     <label>
                         <input
                         className="form_input"
-                        name="comment"
+                        name="userComment"
                         type="text"
                         placeholder="комментарий"
                         />
