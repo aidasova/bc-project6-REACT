@@ -4,15 +4,17 @@ import "./Modal.css";
 
 class Modal extends Component {
   render() {
-    console.log(this.props.show);
+    console.log(this.props);
     return (
 <div>
-        {this.props.show && (
+    hgjbk
+    <div className="black"></div>
+        {/* {this.props (
           <div className="modal">
             <h1>{this.props.name}</h1>
-            <button onClick={this.props.onHide}>Close Modal</button>
+            <button onClick={this.props}>Close Modal</button>
           </div>
-        )}
+        )} */}
  </div>
     );
   }

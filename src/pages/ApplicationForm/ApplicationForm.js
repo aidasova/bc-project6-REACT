@@ -4,7 +4,7 @@ import store from '../../reducer/store';
 import './ApplicationForm.css';
 // import { Link } from 'react-router-dom';
 import {addFreeOffice} from '../../components/action/Actions';
-// import Modal from '../../components/Modal/Modal';
+import Modal from '../../components/Modal/Modal';
 
 class ApplicationForm extends Component {
 
@@ -87,9 +87,6 @@ class ApplicationForm extends Component {
     }
 
     render() { 
-        // if (!this.state.showModal) {
-        //   return <div>Modal hide</div>
-        // }
         return (
             <div className="form_page">
                 <div className="form_name">Форма заявки</div> 
@@ -126,6 +123,7 @@ class ApplicationForm extends Component {
                         className="form_input"
                         name="choise"
                         type="text"
+                        value={this.state.choise}
                         onChange={this.handlerChange}
                         />
                     </label>
@@ -147,8 +145,11 @@ class ApplicationForm extends Component {
                         />
                     </label>
                     {/* <Link to='/' className="form_submit">отправить заявку</Link> */}
-                     <button type="submit" className="form_submit">отправить заявку</button>
-                
+                     {this.state.showModal
+                     ? <Modal />
+                     :
+                      <button type="submit" className="form_submit">отправить заявку</button>
+                     }
                 </form>
             </div>
         );
