@@ -1,7 +1,8 @@
 import {refresh, addFreeOffice, addFreeOfficeToForm} from '../components/action/Actions';
 
 let initialState = { 
-    officeitems: [],   
+    officeitems: [],  
+    officeitemsNew: [] 
     }
 
 function reducer(state = initialState, action) {
@@ -13,19 +14,14 @@ function reducer(state = initialState, action) {
         return (newState)
     }
     if(action.type === addFreeOfficeToForm) { 
-        let maxId = 0;
-        state.officeitems.forEach((value) => {
-            if(value.id > maxId){
-                maxId = value.id
-            }
-        })
-        action.payload.id = +maxId + 1;
-        state.officeitems.push(action.payload)
-        return {
-            ...state, officeitems: state.officeitems
-        }
+      console.log(action.payload)
+      let item = state.officeitems.find(item => item.ID === action.payload);
+        console.log(item) 
+        state.officeitemsNew.push(item)
+        console.log(state.officeitemsNew)
     }   
     if(action.type === addFreeOffice) {
+        console.log(action.payload)
           let res = state.officeitems.map((item) => {
             if(item.id === action.payload.id) {
                return item = {...item, ...action.payload}

@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import store from '../../reducer/store';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import { addFreeOfficeToForm, refresh } from '../../components/action/Actions';
+import { refresh } from '../../components/action/Actions';
 import './ListOffice.css';
-
+import OfficeItem from '../../components/OfficeItem/OfficeItem';
+import { Link } from 'react-router-dom';
 
 class ListOffice extends Component {
     constructor() {
         super()
           this.state = {
             officeitems: [],
-            id: '',
-            choise: ''
         }
       }
 
@@ -40,43 +39,33 @@ class ListOffice extends Component {
           officeitems: [
             ...globalState.officeitems
           ]
-        
         })
+        console.log(this.setState)
+
+
       })
       .catch(err => {
           console.log(err);
       });
     }
-
-    buttonClick = (e) => {
-        // e.preventDefault();
-         const dataOffice =  this.state
-         console.log(dataOffice)
-         store.dispatch({
-             type: addFreeOfficeToForm,
-             payload:  dataOffice,
-         })
-         }
+    
     render() { 
-      return this.state.id
-      ? (<Redirect to={"/form/" + this.state.id}></Redirect>)
-      : (
+      console.log(this.state)
+      return (
+      // this.state.officeitems.ID
+      // ? (<Redirect to={"/form/" + this.state.officeitems.ID}></Redirect>)
+      // : (
             <div className="office_page">
                 <div className="office_text">список помещений</div>
 
                 <div className="office_text">
-                    {this.state.officeitems.map(item => {
-                    return(
-                        <div className="office_part" key={item.id}>
-                        <div className="office_item">{item.Floor}</div>
-                        <div className="office_item">{item.Square}</div>
-                        <div className="office_item">{item.Cost}</div>
-                        <button onClick={()=>this.buttonClick()} className="office_item">заявка</button>
-                    </div>
-                    )
-                    })}
+                    {this.state.officeitems.map((item) => (
+                        <div className="office_part" key={item.ID}>
+                          <OfficeItem {...item} />
+                        </div>
+                    ))}
                 </div>
-
+                <Link to={'/form'}  className="form_btn">перейти к форме заявки</Link>
             </div>
         );
     }

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import store from '../../reducer/store';
 import './ApplicationForm.css';
-import { Link } from 'react-router-dom';
-import {addFreeOffice, addFreeOfficeToForm} from '../../components/action/Actions';
+// import { Link } from 'react-router-dom';
+import {addFreeOffice} from '../../components/action/Actions';
+// import Modal from '../../components/Modal/Modal';
 
 class ApplicationForm extends Component {
 
@@ -17,23 +18,31 @@ class ApplicationForm extends Component {
           choise: "",
           userComment: "",
           tel: "",
-          saveForm: 0,
+          showModal: false,
         };
       }
       componentDidMount() {
         const globalState = store.getState(); 
-        const maxId = globalState.officeitems.reduce((max, item) => item.id > max ? item.id : max, 0);
-        const officePart = globalState.officeitems.find((item) => {
-          if (item.id === maxId) {
+        const officePart = globalState.officeitemsNew.filter((item) => {
             return item;
-          }
         });
         console.log(officePart)
-        console.log(maxId)
+        let choiseID = officePart.map(item => item.ID)
+        console.log(choiseID)
+
+        let choiseSum = officePart.reduce((a, b) => a + b.Square, 0)
+        console.log(choiseSum)
         this.setState({
-            id: officePart.id,
-            choise: officePart.choise
+            id: choiseID,
+            choise: choiseSum
         })
+}
+      handlerChange =(event) => {
+        let name = event.target.name; //получаем название поля
+        let value = event.target.value; // получаем значение поля
+  
+        this.setState({ [name]: value });
+        console.log({ [name]: value });
 }
       handlerChange =(event) => {
         let name = event.target.name; //получаем название поля
@@ -45,9 +54,8 @@ class ApplicationForm extends Component {
     handlerSubmit =(event) => {
         event.preventDefault();
         console.log(this.state)
-        alert('заявка отправлена')
         this.setState({
-            saveForm: true
+            showModel: true
           })
         // let officeItem = this.state
         // store.dispatch({
@@ -65,6 +73,7 @@ class ApplicationForm extends Component {
                 tel: this.state.tel,
             })
             .then(response => {
+              console.log(response);
               store.dispatch({
                 type: addFreeOffice,
                 payload: [
@@ -78,7 +87,9 @@ class ApplicationForm extends Component {
     }
 
     render() { 
-        
+        // if (!this.state.showModal) {
+        //   return <div>Modal hide</div>
+        // }
         return (
             <div className="form_page">
                 <div className="form_name">Форма заявки</div> 
@@ -137,6 +148,7 @@ class ApplicationForm extends Component {
                     </label>
                     {/* <Link to='/' className="form_submit">отправить заявку</Link> */}
                      <button type="submit" className="form_submit">отправить заявку</button>
+                
                 </form>
             </div>
         );
