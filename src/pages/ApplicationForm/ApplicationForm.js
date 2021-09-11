@@ -19,9 +19,16 @@ class ApplicationForm extends Component {
           userComment: "",
           tel: "",
           showModal: false,
+        //   officeitemsNew: []
         };
       }
       componentDidMount() {
+        // store.subscribe(() => {
+        //     const globalState = store.getState(); //получить данные из глобального состояния
+        //     this.setState({   //обновить локальное состояние
+        //         officeitemsNew: globalState.officeitemsNew
+        //     })
+        // })
         const globalState = store.getState(); 
         const officePart = globalState.officeitemsNew.filter((item) => {
             return item;
@@ -30,7 +37,7 @@ class ApplicationForm extends Component {
         let choiseID = officePart.map(item => item.ID)
         console.log(choiseID)
 
-        let choiseSum = officePart.reduce((a, b) => a + b.Square, 0)
+        let choiseSum = officePart.reduce((a, b) => a + (b.Floor+ " " +b.Square+ ", "), 0)
         console.log(choiseSum)
         this.setState({
             id: choiseID,
@@ -44,13 +51,7 @@ class ApplicationForm extends Component {
         this.setState({ [name]: value });
         console.log({ [name]: value });
 }
-      handlerChange =(event) => {
-        let name = event.target.name; //получаем название поля
-        let value = event.target.value; // получаем значение поля
-  
-        this.setState({ [name]: value });
-        console.log({ [name]: value });
-      }
+
     handlerSubmit =(event) => {
         event.preventDefault();
         console.log(this.state)
@@ -84,6 +85,7 @@ class ApplicationForm extends Component {
             .catch(err => {
                 console.log(err);
             });
+
     }
 
     render() { 
@@ -132,6 +134,7 @@ class ApplicationForm extends Component {
                         className="form_input"
                         name="userComment"
                         type="text"
+                        onChange={this.handlerChange}
                         placeholder="комментарий"
                         />
                     </label>
@@ -146,7 +149,7 @@ class ApplicationForm extends Component {
                     </label>
                     {/* <Link to='/' className="form_submit">отправить заявку</Link> */}
                      {this.state.showModal
-                     ? <Modal />
+                     ? <div className="show_modal"></div>
                      :
                       <button type="submit" className="form_submit">отправить заявку</button>
                      }

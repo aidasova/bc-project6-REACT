@@ -31,18 +31,7 @@
     color: white;
     font-weight: 500;
   }
-  /* .form_submit {
-    display: inline-block;
-    width: 260px;
-    padding: 10px;
-    margin: 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(107, 107, 107);
-    font-weight: 600;
-    outline: none;
-    text-decoration: none;
-    color: #252323;
-    font-size: 14px;
-    text-align: center;
-} */
+   .show_modal {
+     width: 50px;
+     background-color: hotpink;
+   }
