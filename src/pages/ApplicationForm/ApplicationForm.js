@@ -18,6 +18,7 @@ class ApplicationForm extends Component {
       tel: "",
       showModal: false,
       classColor: "form_page",
+      modalText: ""
     };
   }
   componentDidMount() {
@@ -56,11 +57,7 @@ class ApplicationForm extends Component {
   handlerSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    this.setState({
-      showModal: true,
-      classColor: "::before",
-    });
-
+    
     axios
       .post(`http://localhost:3010/office/add`, {
         userName: this.state.userName,
@@ -72,93 +69,38 @@ class ApplicationForm extends Component {
       })
       .then((response) => {
         console.log(response);
-        store.dispatch({
-          type: addFreeOffice,
-          payload: [...response.data],
+        // store.dispatch({
+        //   type: addFreeOffice,
+        //   payload: [...response.data],
+        // });
+        this.setState({
+          showModal: true,
+          modalText: "все пошло так"
         });
       })
       .catch((err) => {
         console.log(err);
+        this.setState({
+          showModal: true,
+          modalText: "что-то пошло не так"
+        });
       });
   };
 
   render() {
-    return this.state.showModal == true ? (
+    return (
       <div>
-        <div className="show_modal">
-          <Link to="/" className="close_modal">
-            X
-          </Link>
-          <div className="text_modal">
-            <div>заявка отправлена</div>
-            <div>вам перезвонят</div>
+        <div className={"modal " + (this.state.showModal ? "" : "hidden")}>
+          <div className="show_modal ">
+            <Link to="/" className="close_modal">
+              X
+            </Link>
+            <div className="text_modal">
+              <div>заявка отправлена</div>
+              <div>вам перезвонят</div>
+            </div>
           </div>
         </div>
-        <div className={this.state.classColor}>
-          <div className="form_name">Форма заявки</div>
-          <form className="form" onSubmit={this.handlerSubmit}>
-            <label>
-              <input
-                className="form_input"
-                name="userName"
-                type="text"
-                onChange={this.handlerChange}
-                placeholder="имя"
-              />
-            </label>
-            <label>
-              <input
-                className="form_input"
-                name="company"
-                type="text"
-                onChange={this.handlerChange}
-                placeholder="наименование компании"
-              />
-            </label>
-            <label>
-              <input
-                className="form_input"
-                name="inn"
-                type="text"
-                onChange={this.handlerChange}
-                placeholder="инн"
-              />
-            </label>
-            <label>
-              <input
-                className="form_input"
-                name="choise"
-                type="text"
-                value={this.state.choise}
-                onChange={this.handlerChange}
-              />
-            </label>
-            <label>
-              <input
-                className="form_input"
-                name="userComment"
-                type="text"
-                onChange={this.handlerChange}
-                placeholder="комментарий"
-              />
-            </label>
-            <label>
-              <input
-                className="form_input"
-                name="tel"
-                type="text"
-                onChange={this.handlerChange}
-                placeholder="номер телефона"
-              />
-            </label>
-            <button type="submit" className="form_submit">
-              отправить заявку
-            </button>
-          </form>
-        </div>
-      </div>
-    ) : (
-      <div>
         <div className="form_page">
           <div className="form_name">Форма заявки</div>
           <form className="form" onSubmit={this.handlerSubmit}>
@@ -222,7 +164,7 @@ class ApplicationForm extends Component {
           </form>
         </div>
       </div>
-    );
+    )
   }
 }
 
