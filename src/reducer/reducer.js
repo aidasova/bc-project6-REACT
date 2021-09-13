@@ -1,4 +1,4 @@
-import {refresh, addFreeOffice, addFreeOfficeToForm} from '../components/action/Actions';
+import {refresh, addFreeOfficeToForm} from '../components/action/Actions';
 
 let initialState = { 
     officeitems: [],  
@@ -21,19 +21,7 @@ function reducer(state = initialState, action) {
         state.officeitemsNew.push(item)
         console.log(state.officeitemsNew)
     }   
-    if(action.type === addFreeOffice) {
-        console.log(action.payload)
-        //   let res = state.officeitems.map((item) => {
-        //     if(item.id === action.payload.id) {
-        //        return item = {...item, ...action.payload}
-        //     }
-        //     return item; 
-        //    })
-        //    return {
-        //     ...state, officeitems: res
-        // }
-        
-    }
+
    
       return state;
 }
