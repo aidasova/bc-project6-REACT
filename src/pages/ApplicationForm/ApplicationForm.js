@@ -3,7 +3,7 @@ import axios from "axios";
 import store from "../../reducer/store";
 import "./ApplicationForm.css";
 import { Link } from "react-router-dom";
-import { addFreeOffice } from "../../components/action/Actions";
+// import { addFreeOffice } from "../../components/action/Actions";
 
 class ApplicationForm extends Component {
   constructor() {
@@ -17,8 +17,9 @@ class ApplicationForm extends Component {
       userComment: "",
       tel: "",
       showModal: false,
-      classColor: "form_page",
-      modalText: ""
+      modalText: "",
+      close: false,
+      open: false,
     };
   }
   componentDidMount() {
@@ -57,7 +58,7 @@ class ApplicationForm extends Component {
   handlerSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    
+
     axios
       .post(`http://localhost:3010/office/add`, {
         userName: this.state.userName,
@@ -75,32 +76,57 @@ class ApplicationForm extends Component {
         // });
         this.setState({
           showModal: true,
-          modalText: "все пошло так"
+          modalText: "заявка успешно отправлена",
+          close: true,
         });
       })
       .catch((err) => {
         console.log(err);
         this.setState({
           showModal: true,
-          modalText: "что-то пошло не так"
+          modalText: "ошибка при отправке сообщения",
+          close: true,
         });
       });
   };
 
+  toggle = () => {
+    let res = this.state.open;
+    this.setState({
+      open: !res,
+    });
+  };
+
   render() {
+    const { modalText, open } = this.state;
     return (
       <div>
         <div className={"modal " + (this.state.showModal ? "" : "hidden")}>
-          <div className="show_modal ">
-            <Link to="/" className="close_modal">
-              X
-            </Link>
-            <div className="text_modal">
-              <div>заявка отправлена</div>
-              <div>вам перезвонят</div>
+          {this.state.close ? (
+            <div className="show_modal">
+              <div className="close_modal">
+                <Link to="/" className="close_modal">
+                  X
+                </Link>
+              </div>
+
+              <div className="text_modal">{modalText}</div>
             </div>
-          </div>
+          ) : (
+            <div onClick={this.toggle}>
+              {!this.state.open ? (
+                <div className="show_modal">
+                  <div className="close_modal">
+                    <div className="close_modal">X</div>
+                  </div>
+
+                  <div className="text_modal">{modalText}</div>
+                </div>
+              ) : null}
+            </div>
+          )}
         </div>
+
         <div className="form_page">
           <div className="form_name">Форма заявки</div>
           <form className="form" onSubmit={this.handlerSubmit}>
@@ -164,7 +190,7 @@ class ApplicationForm extends Component {
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 
