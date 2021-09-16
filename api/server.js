@@ -57,22 +57,24 @@ app.post("/office/add", (request, response) => {
 app.post(`/login`, (request, response) => {
   console.log(request.body);
   let login = request.body.login;
-  let password = request.body.login;
-  // console.log(
-  //   'SELECT * FROM officeLogin WHERE inn = '${login}' AND passwordInn = '${password}';'
-  // );
-  if (login && password) {
+  let password = request.body.password;
+  console.log(
+    `SELECT * FROM officeLogin WHERE inn = '${login}' AND passwordInn = '${password}';`
+  );
+  if (`${login}` && `${password}`) {
     connection.query(
-      "SELECT * FROM officeLogin WHERE inn = '${login}' AND passwordInn = '${password}';",
+      `SELECT * FROM officeLogin WHERE inn = '${login}' AND passwordInn = '${password}';`,
       (err, data) => {
         if (err) {
           response.status(404).json("not found");
         }
-
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.status(200).json(data);
       }
     );
+  } else {
+    response.send("введите логин и пароль");
+    response.end();
   }
 });
 

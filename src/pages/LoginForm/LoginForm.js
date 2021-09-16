@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./LoginForm.css";
 import axios from "axios";
-import store from "../../reducer/store";
 import { Redirect } from "react-router-dom";
+import store from "../../reducer/store";
+import { getId } from "../../components/action/Actions";
 
 class LoginForm extends Component {
   constructor() {
@@ -11,6 +12,7 @@ class LoginForm extends Component {
       login: "",
       password: "",
       auth: false,
+      officeLogin: [],
     };
   }
 
@@ -31,31 +33,23 @@ class LoginForm extends Component {
         login: this.state.login,
         password: this.state.password,
       })
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
           this.setState({
             auth: true,
           });
+          console.log("правильные данные");
         } else {
           this.setState({
             auth: false,
           });
+          console.log("Не правильные данные");
         }
-        // store.dispatch({
-        //   type: getId,
-        //   payload: [
-        //     ...res.data
-        //   ]
-        // });
-
-        // let globalState = store.getState();
-        // this.setState ({
-        //   officeitems: [
-        //     ...globalState.officeitems
-        //   ]
-        // })
-        // console.log(this.setState)
+        store.dispatch({
+          type: getId,
+          payload: [...response.data],
+        });
       })
       .catch((err) => {
         console.log(err);

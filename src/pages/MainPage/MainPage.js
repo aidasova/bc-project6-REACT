@@ -21,9 +21,6 @@ class MainPage extends Component {
         <Link to="/login" className="btn_add">
           личный кабинет
         </Link>
-        <Link to="/login/:login" className="btn_add">
-          личный кабинет
-        </Link>
       </div>
     );
   }

@@ -19,7 +19,6 @@ class ApplicationForm extends Component {
       showModal: false,
       modalText: "",
       close: false,
-      open: false,
     };
   }
   componentDidMount() {
@@ -85,46 +84,38 @@ class ApplicationForm extends Component {
         this.setState({
           showModal: true,
           modalText: "ошибка при отправке сообщения",
-          close: true,
+          close: false,
         });
       });
   };
 
   toggle = () => {
-    let res = this.state.open;
+    let res = this.state.showModal;
     this.setState({
-      open: !res,
+      showModal: !res,
     });
   };
 
   render() {
-    const { modalText, open } = this.state;
+    const { modalText } = this.state;
     return (
       <div>
         <div className={"modal " + (this.state.showModal ? "" : "hidden")}>
-          {this.state.close ? (
-            <div className="show_modal">
-              <div className="close_modal">
+          <div className="show_modal">
+            <div className="close_modal">
+              {this.state.close ? (
                 <Link to="/" className="close_modal">
                   X
                 </Link>
-              </div>
-
-              <div className="text_modal">{modalText}</div>
-            </div>
-          ) : (
-            <div onClick={this.toggle}>
-              {!this.state.open ? (
-                <div className="show_modal">
-                  <div className="close_modal">
-                    <div className="close_modal">X</div>
-                  </div>
-
-                  <div className="text_modal">{modalText}</div>
+              ) : (
+                <div className="close_modal" onClick={this.toggle}>
+                  X
                 </div>
-              ) : null}
+              )}
             </div>
-          )}
+
+            <div className="text_modal">{modalText}</div>
+          </div>
         </div>
 
         <div className="form_page">

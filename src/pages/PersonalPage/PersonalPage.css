@@ -1,0 +1,74 @@
+.personale_page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #252323;
+  color: azure;
+  box-sizing: border-box;
+  height: 90vh;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.personal_info {
+  width: 295px;
+  margin: 10px;
+  padding: 1em;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+  color: rgb(85, 85, 85);
+  font-weight: 600;
+  border-radius: 10px;
+}
+.document {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.param {
+  color: black;
+}
+.personal-item {
+  color: black;
+  margin-bottom: 10px;
+}
+.enter_out {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, 0.555);
+}
+.output {
+  color: white;
+  float: right;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px;
+  border: none;
+}
+.personal_name {
+  color: white;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px;
+}
+.personale_contact {
+  width: 295px;
+  margin: 10px;
+  padding: 1em;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+  color: rgb(85, 85, 85);
+  font-weight: 600;
+  border-radius: 10px;
+}
+.personal_hello {
+  font-size: 16px;
+  width: 50%;
+  text-align: center;
+  margin: 20px;
+}
+.personal-item {
+  font-size: 14px;
+}
