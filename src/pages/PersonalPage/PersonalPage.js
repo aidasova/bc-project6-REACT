@@ -19,9 +19,14 @@ class PersonalPage extends Component {
       });
       console.log(personalItem);
       //  в this.state.items
-      this.setState({
-        items: personalItem,
-      });
+      if (personalItem.length !== 0) {
+        this.setState({
+          items: personalItem,
+        });
+      } else {
+        // Запрос к серверу на получение информации
+      }
+
     });
   }
   onClickLink = () => {};
@@ -77,10 +82,10 @@ class PersonalPage extends Component {
           </div>
         </div>
         <footer>
-          <div className="block-personal"></div>
-          <div className="block-personal"></div>
+          
           <Link to={"/"} onClick={() => this.onClickLink()} className="output">
-            выйти
+            <div className="block-personal"></div>
+            <div className="block-personal"></div>
           </Link>
         </footer>
       </div>

@@ -17,6 +17,10 @@ class LoginForm extends Component {
     };
   }
 
+  componentDidMount() {
+
+  }
+
   handlerChange = (event) => {
     let name = event.target.name; //получаем название поля
     let value = event.target.value; // получаем значение поля
@@ -25,9 +29,29 @@ class LoginForm extends Component {
     console.log({ [name]: value });
   };
 
+  isFieldsNotEmpty = () => {
+    if (this.state.login === "" || this.state.password === "") {
+      return false;
+    }
+
+    return true
+  }
+
+  error = (error) => {
+    this.setState({
+      // auth: false,
+      text: error
+    });
+  }
+
   handlerSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
+    console.log('+++',this.state);
+
+    if (!this.isFieldsNotEmpty()) {
+      this.error("Введите данные");
+      return;
+    }
 
     axios
       .post(`http://localhost:3010/login/`, {
@@ -35,38 +59,20 @@ class LoginForm extends Component {
         password: this.state.password,
       })
       .then((response) => {
-        console.log(response);
-        let login = this.state.login;
-        let password = this.state.password;
-        let inn = response.data[0].inn;
-        let passwordEntered = response.data[0].passwordInn;
-        if (login === "" && password === "") {
-          this.setState({
-            auth: false,
-            text: "введите данные",
-          });
-          console.log("введите данные");
-          return;
-        }
-        if (login === inn && password === passwordEntered) {
-          this.setState({
-            auth: true,
-          });
-          console.log("правильные данные");
-        } else {
-          this.setState({
-            auth: false,
-            text: "некорректные данные",
-          });
-          console.log("не правильные данные");
-        }
+        console.log('---', response);
+        
+        this.setState({
+          auth: true
+        });
+
         store.dispatch({
           type: getId,
           payload: [...response.data],
         });
       })
       .catch((err) => {
-        console.log(err);
+        this.error(err.response.data);
+        console.log('+++', err.response);
       });
   };
 
