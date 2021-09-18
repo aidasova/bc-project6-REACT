@@ -1,41 +1,45 @@
 .main_page {
-  background-color: #252323;  
+  background-color: #1e1e1e;
   border-radius: 5%;
-  color: #c2bcbc;
+  color: #c9c9c9;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  height: 570px;
+  width: 375px;
 }
 .btn_add {
-    width: 280px;
-    padding: 10px;
-    margin: 15px;
-    border: none;
-    outline: none;
-    text-decoration: none;
-    color: #252323;
-    background-color: #c2bcbc;
-    border-radius: 5px;
-    font-size: 12px;
+  width: 300px;
+  padding: 15px;
+  margin: 15px;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  color: #252323;
+  background-color: #c9c9c9;
+  border-radius: 5px;
 }
 .logo {
-    width: 80%;
+  width: 90%;
 }
 .main_contact {
-    font-weight: 300;
-    font-size: 10px;
-    box-sizing: border-box;
-    width: 100%;
+  font-weight: 300;
+  font-size: 14px;
+  box-sizing: border-box;
+  width: 100%;
 }
 .main_contact div:nth-child(1) {
-    float:left;
- }
- .main_contact div:nth-child(2) {
-    float:right;
- }
- .name_name {
-     font-weight: 500;
-     margin-bottom: 50px;
-     font-size: 20px;
- }
+  float: left;
+}
+.main_contact div:nth-child(2) {
+  float: right;
+}
+.name_name {
+  font-weight: 500;
+  margin-bottom: 30px;
+  font-size: 25px;
+}
+.btn_add:hover {
+  background-color: #373737;
+}

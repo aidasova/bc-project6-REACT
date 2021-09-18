@@ -28,47 +28,61 @@ class PersonalPage extends Component {
   render() {
     return (
       <div className="personale_page">
-        <div className="personal_hello">Добро пожаловать в личный кабинет</div>
-        <div className="enter_out">
+        <div className="header-block">
+          <div className="personal_hello">личный кабинет</div>
           <div className="personal_name">{this.state.items.inn}</div>
+        </div>
+
+        <div className="block-big">
+          <div className="block-info">
+            <div className="personal-item_name">данные договора:</div>
+
+            <div className="personal-info">
+              <div className="param">
+                <div>расположение:</div>
+                <div>{this.state.items.floor}</div>
+              </div>
+
+              <div className="param">
+                <div>площадь:</div>
+                <div>{this.state.items.square}</div>
+              </div>
+
+              <div className="param">
+                <div>площадь:</div>
+                <div>{this.state.items.cost}</div>
+              </div>
+            </div>
+
+            <div className="block-info-contact">
+              <div className="personal-name-two">контакты: </div>
+
+              <div className="personal-info">
+                <div className="params">
+                  <div>упр.компания:</div>
+                  <div>+78888880000</div>
+                </div>
+
+                <div className="params">
+                  <div>тех. служба:</div>
+                  <div>+78888880000</div>
+                </div>
+
+                <div className="params">
+                  <div>операторы связи:</div>
+                  <div>+78888880000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer>
+          <div className="block-personal"></div>
+          <div className="block-personal"></div>
           <Link to={"/"} onClick={() => this.onClickLink()} className="output">
             выйти
           </Link>
-        </div>
-        <div className="personal_info">
-          <div className="personal-item">данные договора:</div>
-
-          <div className="document">
-            <div className="personal_item"> этаж:</div>
-            <div className="param">{this.state.items.floor}</div>
-          </div>
-
-          <div className="document">
-            <div className="personal_item"> арендуемая площадь:</div>
-            <div className="param">{this.state.items.square}</div>
-          </div>
-
-          <div className="document">
-            <div className="personal_item"> оплата в месяц:</div>
-            <div className="param">{this.state.items.cost}</div>
-          </div>
-        </div>
-        <div className="personale_contact">
-          <div className="personal-item">контакты: </div>
-
-          <div className="document">
-            <div className="personal_item"> управляющая компания:</div>
-            <div className="param"> +7888888</div>
-          </div>
-          <div className="document">
-            <div className="personal_item"> техническая служба:</div>
-            <div className="param"> +7888888</div>
-          </div>
-          <div className="document">
-            <div className="personal_item"> операторы связи:</div>
-            <div className="param"> +7888888</div>
-          </div>
-        </div>
+        </footer>
       </div>
     );
   }

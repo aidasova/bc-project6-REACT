@@ -61,12 +61,16 @@ app.post(`/login`, (request, response) => {
   console.log(
     `SELECT * FROM officeLogin WHERE inn = '${login}' AND passwordInn = '${password}';`
   );
-  if (`${login}` && `${password}`) {
+  if (login && password) {
     connection.query(
       `SELECT * FROM officeLogin WHERE inn = '${login}' AND passwordInn = '${password}';`,
       (err, data) => {
+        console.log(data);
         if (err) {
-          response.status(404).json("not found");
+          response.status(400).json("что-то не так");
+        }
+        if (!data.length) {
+          response.status(403).json("не найден");
         }
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.status(200).json(data);

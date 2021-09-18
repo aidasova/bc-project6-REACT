@@ -1,9 +1,49 @@
-.form_page {
-  height: 90vh;
+.login_page {
+  background-color: #1e1e1e;
+  border-radius: 5%;
+  color: #c9c9c9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  width: 375px;
+  height: 570px;
 }
-.form_name {
-  margin-top: 50px;
-}
-.form {
+.login_name {
+  font-weight: 500;
   margin: 20px;
+  font-size: 25px;
+  color: #c9c9c9;
+}
+.login_click {
+  margin: 20px;
+}
+.login_text {
+  color: rgba(240, 69, 69, 0.925);
+  text-align: center;
+}
+.login_submit {
+  width: 330px;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: 600;
+  margin: 15px;
+  color: #1e1e1e;
+  background-color: #c9c9c9;
+  position: absolute;
+  left: 27px;
+  font-size: 16px;
+}
+.login_submit:hover {
+  background-color: #373737;
+}
+.login_input {
+  margin: 20px;
+  padding: 15px;
+  width: 300px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: rgb(255, 255, 255);
 }

@@ -1,48 +1,33 @@
 .office_page {
-    background-color: #252323;  
-    border-radius: 5%;
-    color: #dbdada;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    width: 375px;
-    padding-top: 20px;
-    padding-bottom: 60px;
-}
-.office_part {
-    display: flex;
-    flex-wrap: nowrap;
-    font-size: 12px;
-}
-.office_item {
-    background-color: rgb(231, 231, 231);
-    width: 80px;
-    margin-top: 20px;
-    margin-left: 5px;
-    border-radius: 5px;
-    color: black;
-    box-sizing: border-box;
-    padding: 5px;
+  background-color: #252323;
+  border-radius: 5%;
+  color: #c9c9c9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 375px;
+  padding: 30px;
 }
 .office_text {
-    margin: 20px;
+  margin: 20px;
+  font-size: 23px;
 }
 .office_item:last-child {
-    background-color: rgb(175, 175, 175);
-    color: black;
-    width: 60px;
+  background-color: #c9c9c9;
+  width: 60px;
 }
 .form_btn {
-    width: 85%;
-    padding: 10px;
-    margin: 15px;
-    text-align: center;
-    border: none;
-    outline: none;
-    text-decoration: none;
-    color: #252323;
-    background-color: #a09b9b;
-    border-radius: 5px;
-    font-size: 12px;
+  width: 300px;
+  padding: 15px;
+  margin: 15px;
+  color: #1e1e1e;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  background-color: #c9c9c9;
+}
+.form_btn:hover {
+  background-color: #373737;
 }

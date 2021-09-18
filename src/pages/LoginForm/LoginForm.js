@@ -12,6 +12,7 @@ class LoginForm extends Component {
       login: "",
       password: "",
       auth: false,
+      text: "",
       officeLogin: [],
     };
   }
@@ -35,7 +36,19 @@ class LoginForm extends Component {
       })
       .then((response) => {
         console.log(response);
-        if (response.status === 200) {
+        let login = this.state.login;
+        let password = this.state.password;
+        let inn = response.data[0].inn;
+        let passwordEntered = response.data[0].passwordInn;
+        if (login === "" && password === "") {
+          this.setState({
+            auth: false,
+            text: "введите данные",
+          });
+          console.log("введите данные");
+          return;
+        }
+        if (login === inn && password === passwordEntered) {
           this.setState({
             auth: true,
           });
@@ -43,8 +56,9 @@ class LoginForm extends Component {
         } else {
           this.setState({
             auth: false,
+            text: "некорректные данные",
           });
-          console.log("Не правильные данные");
+          console.log("не правильные данные");
         }
         store.dispatch({
           type: getId,
@@ -57,16 +71,18 @@ class LoginForm extends Component {
   };
 
   render() {
+    const { text } = this.state;
     return this.state.auth ? (
       <Redirect to={"/login/" + this.state.login}></Redirect>
     ) : (
       <div>
-        <div className="form_page">
-          <div className="form_name">Личный кабинет</div>
-          <form className="form" onSubmit={this.handlerSubmit}>
+        <div className="login_page">
+          <div className="login_name">Личный кабинет</div>
+          <div className="login_text">{text}</div>
+          <form className="login_click" onSubmit={this.handlerSubmit}>
             <label>
               <input
-                className="form_input"
+                className="login_input"
                 name="login"
                 type="text"
                 onChange={this.handlerChange}
@@ -75,14 +91,14 @@ class LoginForm extends Component {
             </label>
             <label>
               <input
-                className="form_input"
+                className="login_input"
                 name="password"
                 type="text"
                 onChange={this.handlerChange}
                 placeholder="пароль"
               />
             </label>
-            <button type="submit" className="form_submit">
+            <button type="submit" className="login_submit">
               войти
             </button>
           </form>
