@@ -25,6 +25,9 @@ function reducer(state = initialState, action) {
     console.log(item);
     state.officeitemsNew.push(item);
     console.log(state.officeitemsNew);
+    // return {
+    //   officeitemsNew: state.officeitemsNew,
+    // };
   }
   if (action.type === getId) {
     console.log(action.payload);
