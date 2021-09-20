@@ -27,19 +27,6 @@ class PersonalPage extends Component {
       this.setState({
         items: personalItem,
       });
-      console.log(Object.keys(personalItem).length);
-      //  в this.state.items
-      // if (Object.keys(personalItem).length !== 0) {
-      //   this.setState({
-      //     items: personalItem,
-      //   });
-      // } else {
-      //   let globalState = store.getState();
-      // this.setState({
-      //   items: personalItem,
-      // });
-      // window.location.href = "/";
-      // }
     });
   }
   onClickLink = () => {};

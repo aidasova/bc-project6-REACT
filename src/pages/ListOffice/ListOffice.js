@@ -36,7 +36,6 @@ class ListOffice extends Component {
         this.setState({
           officeitems: [...globalState.officeitems],
         });
-        console.log(this.setState);
       })
       .catch((err) => {
         console.log(err);
