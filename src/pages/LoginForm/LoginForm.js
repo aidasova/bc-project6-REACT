@@ -18,7 +18,12 @@ class LoginForm extends Component {
   }
 
   componentDidMount() {
-
+    // store.subscribe(() => {
+    const globalState = store.getState(); //получить данные из глобального состояния
+    this.setState({
+      officeLogin: globalState.officeLogin,
+    });
+    console.log(globalState.officeLogin);
   }
 
   handlerChange = (event) => {
@@ -33,20 +38,19 @@ class LoginForm extends Component {
     if (this.state.login === "" || this.state.password === "") {
       return false;
     }
-
-    return true
-  }
+    return true;
+  };
 
   error = (error) => {
     this.setState({
       // auth: false,
-      text: error
+      text: error,
     });
-  }
+  };
 
   handlerSubmit = (event) => {
     event.preventDefault();
-    console.log('+++',this.state);
+    console.log("+++", this.state);
 
     if (!this.isFieldsNotEmpty()) {
       this.error("Введите данные");
@@ -59,20 +63,23 @@ class LoginForm extends Component {
         password: this.state.password,
       })
       .then((response) => {
-        console.log('---', response);
-        
+        console.log("---", response);
+
+        let globalState = store.getState();
+        console.log(globalState.auth);
         this.setState({
-          auth: true
+          auth: globalState.auth,
         });
 
         store.dispatch({
           type: getId,
           payload: [...response.data],
+          auth: true,
         });
       })
       .catch((err) => {
         this.error(err.response.data);
-        console.log('+++', err.response);
+        console.log("+++", err.response);
       });
   };
 

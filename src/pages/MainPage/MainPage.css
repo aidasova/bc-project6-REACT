@@ -8,6 +8,10 @@
   padding: 20px;
   height: 570px;
   width: 375px;
+  clear: both;
+  -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 7px 10px rgba(0, 0, 0, 0.3);
 }
 .btn_add {
   width: 300px;

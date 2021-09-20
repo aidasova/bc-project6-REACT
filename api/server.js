@@ -67,12 +67,12 @@ app.post(`/login`, (request, response) => {
       (err, data) => {
         console.log(data);
         if (err) {
-          response.status(403).json('Что-то пошло не так');
-          return
+          response.status(403).json("Что-то пошло не так");
+          return;
         }
         if (!data.length) {
-          response.status(404).json('Пользователь не найден');
-          return
+          response.status(404).json("Пользователь не найден");
+          return;
         }
 
         response.setHeader("Access-Control-Allow-Origin", "*");

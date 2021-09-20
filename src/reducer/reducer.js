@@ -8,6 +8,7 @@ let initialState = {
   officeitems: [],
   officeitemsNew: [],
   officeLogin: [],
+  auth: true,
 };
 
 function reducer(state = initialState, action) {
@@ -28,9 +29,14 @@ function reducer(state = initialState, action) {
   if (action.type === getId) {
     console.log(action.payload);
     console.log(state);
+    console.log(action.auth);
+    console.log({ auth: action.auth });
+    let newArray1 = action.payload;
+    console.log(newArray1);
+    let newArray = newArray1.concat({ auth: action.auth });
+    console.log(newArray);
     let newState = {
-      ...state,
-      officeLogin: action.payload,
+      officeLogin: newArray,
     };
     console.log(newState);
     return newState;

@@ -5,7 +5,13 @@ import { Link } from "react-router-dom";
 
 class PersonalPage extends Component {
   state = {
-    items: "",
+    items: {
+      inn: "",
+      passwordInn: "",
+      floor: "",
+      square: "",
+      cost: "",
+    },
   };
 
   componentDidMount() {
@@ -18,15 +24,22 @@ class PersonalPage extends Component {
         return item.inn === this.props.match.params.id;
       });
       console.log(personalItem);
+      this.setState({
+        items: personalItem,
+      });
+      console.log(Object.keys(personalItem).length);
       //  в this.state.items
-      if (personalItem.length !== 0) {
-        this.setState({
-          items: personalItem,
-        });
-      } else {
-        // Запрос к серверу на получение информации
-      }
-
+      // if (Object.keys(personalItem).length !== 0) {
+      //   this.setState({
+      //     items: personalItem,
+      //   });
+      // } else {
+      //   let globalState = store.getState();
+      // this.setState({
+      //   items: personalItem,
+      // });
+      // window.location.href = "/";
+      // }
     });
   }
   onClickLink = () => {};
@@ -82,7 +95,6 @@ class PersonalPage extends Component {
           </div>
         </div>
         <footer>
-          
           <Link to={"/"} onClick={() => this.onClickLink()} className="output">
             <div className="block-personal"></div>
             <div className="block-personal"></div>
