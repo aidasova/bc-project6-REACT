@@ -15,7 +15,7 @@ class MainPage extends Component {
         <Link to="/offices" className="btn_add">
           свободные помещения
         </Link>
-        <Link to="/offices" className="btn_add">
+        <Link to="/form" className="btn_add">
           заявка на помещение
         </Link>
         <Link to="/login" className="btn_add">
