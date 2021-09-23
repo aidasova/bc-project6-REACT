@@ -35,7 +35,8 @@ class PersonalPage extends Component {
       <div className="personale_page">
         <div className="header-block">
           <div className="personal_hello">личный кабинет</div>
-          <div className="personal_name">{this.state.items.inn}</div>
+          <div className="personal_name">ООО "Проект"</div>
+          <div className="personal_name">инн: {this.state.items.inn}</div>
         </div>
 
         <div className="block-big">

@@ -23,6 +23,7 @@ function reducer(state = initialState, action) {
     console.log(action.payload);
     let item = state.officeitems.find((item) => item.ID === action.payload);
     console.log(item);
+    console.log(state.officeitemsNew);
     state.officeitemsNew.push(item);
     console.log(state.officeitemsNew);
     // return {

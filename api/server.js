@@ -36,11 +36,11 @@ app.get("/office/all", (request, response) => {
 app.post("/office/add", (request, response) => {
   const { userName, company, inn, choise, userComment, tel } = request.body;
   console.log(request.body);
-  console.log(`INSERT INTO officeform (userName, company, inn, choise, userComment, tel)
+  console.log(`INSERT INTO officeForm (userName, company, inn, choise, userComment, tel)
     VALUES ('${userName}', '${company}', '${inn}', '${choise}', '${userComment}', '${tel}')`);
 
   connection.query(
-    `INSERT INTO officeform (userName, company, inn, choise, userComment, tel)
+    `INSERT INTO officeForm (userName, company, inn, choise, userComment, tel)
         VALUES ('${userName}', '${company}', '${inn}', '${choise}', '${userComment}', '${tel}');
         `,
     (err, data) => {
