@@ -24,7 +24,7 @@ class ListOffice extends Component {
   };
   componentDidMount() {
     this._isMounted = true;
-    store.subscribe(this.baseSubscribe);
+    this.unsubscribe = store.subscribe(this.baseSubscribe);
     axios
       .get(`http://localhost:3010/office/all`)
       .then((res) => {
@@ -49,6 +49,7 @@ class ListOffice extends Component {
     // let unSubcribe = store.subscribe(this.baseSubscribe);
     // unSubcribe();
     this._isMounted = false;
+    this.unsubscribe();
   }
   render() {
     console.log(this.state);

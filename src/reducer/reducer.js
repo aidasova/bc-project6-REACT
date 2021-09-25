@@ -36,16 +36,12 @@ function reducer(state = initialState, action) {
     return updatedState;
   }
   if (action.type === getId) {
-    console.log(action.payload);
-    console.log(state);
-    console.log(action.auth);
-    console.log({ auth: action.auth });
-    let newArray1 = action.payload;
-    console.log(newArray1);
-    let newArray = newArray1.concat({ auth: action.auth });
-    console.log(newArray);
+
+    let newArray = action.payload;
+
     let newState = {
       officeLogin: newArray,
+      auth: action.auth
     };
     console.log(newState);
     return newState;

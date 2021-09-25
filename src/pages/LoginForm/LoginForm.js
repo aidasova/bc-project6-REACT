@@ -53,7 +53,7 @@ class LoginForm extends Component {
   handlerSubmit = (event) => {
     event.preventDefault();
     console.log("+++", this.state);
-
+    this._isMounted = true;
     if (!this.isFieldsNotEmpty()) {
       this.error("Введите данные");
       return;
@@ -67,18 +67,23 @@ class LoginForm extends Component {
       .then((response) => {
         console.log("---", response);
 
-        let globalState = store.getState();
-        console.log(globalState.auth);
-        if (this._isMounted) {
-          this.setState({
-            auth: globalState.auth,
-          });
-        }
         store.dispatch({
           type: getId,
           payload: [...response.data],
           auth: true,
         });
+
+        let globalState = store.getState();
+        console.log('gstate=', globalState);
+        console.log('auth=', globalState.auth);
+
+
+        if (this._isMounted) {
+          this.setState({
+            auth: globalState.auth,
+          });
+        }
+        
       })
       .catch((err) => {
         this.error(err.response.data);
@@ -86,8 +91,6 @@ class LoginForm extends Component {
       });
   };
   componentWillUnmount() {
-    this.handlerSubmit = null;
-    this.handlerChange = null;
     this._isMounted = false;
   }
   render() {

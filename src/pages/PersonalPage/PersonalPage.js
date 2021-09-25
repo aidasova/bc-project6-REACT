@@ -15,7 +15,7 @@ class PersonalPage extends Component {
   };
 
   componentDidMount() {
-    store.subscribe(() => {
+    this.unsubscribe = store.subscribe(() => {
       let globalState = store.getState();
       console.log(globalState.officeLogin);
       console.log(this.props.match.params.id);
@@ -29,6 +29,11 @@ class PersonalPage extends Component {
       });
     });
   }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   onClickLink = () => {};
   render() {
     return (
