@@ -25,6 +25,9 @@ function reducer(state = initialState, action) {
     console.log(item);
     console.log(state.officeitemsNew);
     // state.officeitemsNew.push(item);
+    if (!state.officeitemsNew) {
+      state.officeitemsNew = [];
+    }
     let updatedItem = [...state.officeitemsNew, item];
     console.log(updatedItem);
     let updatedState = { ...state };

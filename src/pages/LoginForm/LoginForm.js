@@ -6,6 +6,7 @@ import store from "../../reducer/store";
 import { getId } from "../../components/action/Actions";
 
 class LoginForm extends Component {
+  _isMounted = false;
   constructor() {
     super();
     this.state = {
@@ -18,6 +19,7 @@ class LoginForm extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     // store.subscribe(() => {
     const globalState = store.getState(); //получить данные из глобального состояния
     this.setState({
@@ -67,10 +69,11 @@ class LoginForm extends Component {
 
         let globalState = store.getState();
         console.log(globalState.auth);
-        this.setState({
-          auth: globalState.auth,
-        });
-
+        if (this._isMounted) {
+          this.setState({
+            auth: globalState.auth,
+          });
+        }
         store.dispatch({
           type: getId,
           payload: [...response.data],
@@ -82,7 +85,11 @@ class LoginForm extends Component {
         console.log("+++", err.response);
       });
   };
-
+  componentWillUnmount() {
+    this.handlerSubmit = null;
+    this.handlerChange = null;
+    this._isMounted = false;
+  }
   render() {
     const { text } = this.state;
     return this.state.auth ? (

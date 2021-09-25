@@ -8,21 +8,23 @@ import OfficeItem from "../../components/OfficeItem/OfficeItem";
 import { Link } from "react-router-dom";
 
 class ListOffice extends Component {
+  _isMounted = false;
   constructor() {
     super();
-    this.state = {
-      officeitems: [],
-    };
   }
-
-  componentDidMount() {
-    store.subscribe(() => {
-      const globalState = store.getState(); //получить данные из глобального состояния
-      this.setState({
-        //обновить локальное состояние
-        officeitems: globalState.officeitems,
-      });
+  state = {
+    officeitems: [],
+  };
+  baseSubscribe = () => {
+    const globalState = store.getState(); //получить данные из глобального состояния
+    this.setState({
+      //обновить локальное состояние
+      officeitems: globalState.officeitems,
     });
+  };
+  componentDidMount() {
+    this._isMounted = true;
+    store.subscribe(this.baseSubscribe);
     axios
       .get(`http://localhost:3010/office/all`)
       .then((res) => {
@@ -33,15 +35,21 @@ class ListOffice extends Component {
         console.log(res);
 
         let globalState = store.getState();
-        this.setState({
-          officeitems: [...globalState.officeitems],
-        });
+        if (this._isMounted) {
+          this.setState({
+            officeitems: [...globalState.officeitems],
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
+  componentWillUnmount() {
+    // let unSubcribe = store.subscribe(this.baseSubscribe);
+    // unSubcribe();
+    this._isMounted = false;
+  }
   render() {
     console.log(this.state);
     return (
