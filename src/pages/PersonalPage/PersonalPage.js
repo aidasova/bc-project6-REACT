@@ -28,8 +28,19 @@ class PersonalPage extends Component {
         items: personalItem,
       });
     });
-  }
 
+    let globalState = store.getState();
+    console.log(globalState.officeLogin);
+    console.log(this.props.match.params.id);
+    // из globalState объект с данными по отображаемому id
+    let personalItem = globalState.officeLogin.find((item) => {
+      return item.inn === this.props.match.params.id;
+    });
+    console.log(personalItem);
+    this.setState({
+      items: personalItem,
+    });
+  }
   componentWillUnmount() {
     this.unsubscribe();
   }
@@ -60,7 +71,7 @@ class PersonalPage extends Component {
               </div>
 
               <div className="param">
-                <div>площадь:</div>
+                <div>стоимость:</div>
                 <div>{this.state.items.cost}</div>
               </div>
             </div>
