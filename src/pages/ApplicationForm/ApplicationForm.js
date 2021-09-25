@@ -23,11 +23,12 @@ class ApplicationForm extends Component {
   }
   componentDidMount() {
     // store.subscribe(() => {
-    //     const globalState = store.getState(); //получить данные из глобального состояния
-    //     this.setState({   //обновить локальное состояние
-    //         officeitemsNew: globalState.officeitemsNew
-    //     })
-    // })
+    //   const globalState = store.getState(); //получить данные из глобального состояния
+    //   this.setState({
+    //     //обновить локальное состояние
+    //     officeitemsNew: globalState.officeitemsNew,
+    //   });
+    // });
     const globalState = store.getState();
     const officePart = globalState.officeitemsNew.filter((item) => {
       return item;
